@@ -112,3 +112,29 @@ function incrementAgeInPlace(obj) {
     obj.updated_at = new Date();
     return obj;
 }
+// Function that creates and returns a new object (pass by value)
+function incrementAgeCopy(obj) {
+    // Create a shallow copy of the object
+    const copy = { ...obj };
+    
+    if (!copy.hasOwnProperty('age')) {
+        copy.age = 0;
+    }
+    copy.age++;
+    copy.updated_at = new Date();
+    return copy;
+}
+
+// Test the functions
+const person = { name: "Alice" };
+
+console.log("Original object:", person);
+
+const modifiedPerson = incrementAgeInPlace(person);
+console.log("After incrementAgeInPlace:", person);
+console.log("Modified object is the same as original:", person === modifiedPerson);
+
+const copiedPerson = incrementAgeCopy(person);
+console.log("After incrementAgeCopy:", person);
+console.log("Copied object:", copiedPerson);
+console.log("Copied object is different from original:", person !== copiedPerson);
